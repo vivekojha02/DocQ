@@ -26,15 +26,15 @@ PERMANENT_SESSION_LIFETIME = timedelta(minutes=10)  # Session timeout after 10 m
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'envy9197@gmail.com'           # Change this to your Gmail address
-EMAIL_HOST_PASSWORD = 'dqcd elid lgdx bxqp'     # App password generated from Gmail
+EMAIL_HOST_USER = 'abcdojha@gmail.com'           # Change this to your Gmail address
+EMAIL_HOST_PASSWORD = 'd*** ***d lg*x ****'     # App password generated from Gmail
 OTP_VALIDITY_MINUTES = 2
 OTP_RESEND_LIMIT = 3
 
 # -------------------------------
 # Google Sheets Config
 # -------------------------------
-GOOGLE_SHEET_ID = '1t_Ayj4fpv4sXqZtBDxP77Nk9IibFFidFguhmEkAfvCk'       # Sheet ID from Google Sheets URL
+GOOGLE_SHEET_ID = '1t_Ayj4fpv4sXqZtBDxP**7Nk****dFguhmEkAfvCk'       # Sheet ID from Google Sheets URL
 SHEET_NAME = 'Appointments'                         # Sheet/tab name
 
 # -------------------------------
@@ -74,3 +74,4 @@ SMTP_PASSWORD = EMAIL_HOST_PASSWORD
 # -------------------------------
 SERVICE_ACCOUNT_FILE = os.path.join('credentials', 'service_account.json')
 GOOGLE_CREDS_FILE = SERVICE_ACCOUNT_FILE
+
