@@ -137,7 +137,7 @@ DocQ/
 
 ## 🔐 Environment Variables
 
-remember to change config.py file before use:
+**Remember to change config.py,service_account.json file before use:**
 
 ```
 EMAIL_USER=your_email@gmail.com
