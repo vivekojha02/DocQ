@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Book Appointment</h2>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flash">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/book">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+
+            <label>Age:</label>
+            <input type="number" name="age" min="1" max="120" required>
+
+            <label>Gender:</label>
+            <select name="gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+
+            <label>Contact Number:</label>
+            <input type="number" name="contact" required>
+
+            <label>Preferred Date:</label>
+            <input type="date" name="date" required min="{{ today }}">
+
+            <label>Preferred Time:</label>
+            <select name="time">
+                <option>09:00</option>
+                <option>09:30</option>
+                <option>10:00</option>
+                <option>10:30</option>
+                <option>11:00</option>
+                <option>11:30</option>
+                <option>12:00</option>
+                <option>12:30</option>
+                <option>17:00</option>
+                <option>17:30</option>
+                <option>18:00</option>
+                <option>18:30</option>
+                <option>19:00</option>
+                <option>19:30</option>
+                <option>20:00</option>
+                <option>20:30</option>
+            </select>
+
+            <label>Symptoms (optional):</label>
+            <input type="text" name="symptoms">
+
+            <label>Select Doctor:</label>
+            <select name="doctor" required>
+                <option>Dr. Manoj Sinha</option>
+                <option>Dr. Reetu Sinha</option>
+            </select>
+
+            <label>Appointment Type:</label>
+            <select name="appointment_type">
+                <option>General</option>
+                <option>Emergency</option>
+            </select>
+
+            <label>Previous Visit Date (if any):</label>
+            <input type="date" name="previous_visit">
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Enter OTP</h2>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flash">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- OTP Form -->
+        <form method="POST" action="/verify">
+            <label>Enter OTP:</label>
+            <input type="text" name="otp" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+
+        <!-- Resend OTP Button -->
+        <button id="resendOtpBtn" onclick="resendOtp()" disabled>Resend OTP</button>
+        <p id="timerText">You can resend OTP in 120 seconds...</p>
+    </div>
+
+    <script>
+        // Countdown for enabling Resend OTP
+        let countdown = 120;
+        let timer = setInterval(() => {
+            countdown--;
+            if (countdown <= 0) {
+                document.getElementById('resendOtpBtn').disabled = false;
+                document.getElementById('timerText').textContent = "You can now resend the OTP.";
+                clearInterval(timer);
+            } else {
+                document.getElementById('timerText').textContent = `You can resend OTP in ${countdown} seconds...`;
+            }
+        }, 1000);
+
+        // Resend OTP function
+        function resendOtp() {
+            fetch('/resend_otp', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(err => alert('Failed to resend OTP'));
+            
+            // Disable button again for next 120 seconds
+            document.getElementById('resendOtpBtn').disabled = true;
+            countdown = 120;
+            timer = setInterval(() => {
+                countdown--;
+                if (countdown <= 0) {
+                    document.getElementById('resendOtpBtn').disabled = false;
+                    document.getElementById('timerText').textContent = "You can now resend the OTP.";
+                    clearInterval(timer);
+                } else {
+                    document.getElementById('timerText').textContent = `You can resend OTP in ${countdown} seconds...`;
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
